@@ -1,0 +1,63 @@
+<div class="p-1 bg-light" style="min-height: 100vh;">
+  <div class="container-fluid">
+    <div class="margin-x">
+
+      <div class="row">
+        <div class="col-md-12 d-flex align-items-center">
+          <span class="h1 py-4 fw-bold flex-start">Home</span>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="mb-5 inner-box pt-2">
+        <div class="m-3">
+          <h4 class="h4 fw-bold">Dashboard</h4>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-between flex-wrap">
+
+          <div class="shadow-sm p-3 bg-cblue border rounded-3 flex-fill m-3 text-white">
+            <h6>Total Employees</h6>
+            <h4 class="fw-bold text-end">{{total_emp || 0}}</h4>
+          </div>
+
+          <div class="shadow-sm p-3 bg-cgreen border rounded-3 flex-fill m-3 text-white">
+            <h6>Employees Present</h6>
+            <h4 class="fw-bold text-end">{{present_emp || 0}}</h4>
+          </div>
+
+          <div class="shadow-sm p-3 bg-cred border rounded-3 flex-fill m-3 text-white">
+            <h6>Employees Temporary</h6>
+            <h4 class="fw-bold text-end">{{absent_emp || 0}}</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-5 inner-box">
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead class="bg-secondary text-white" style="position: sticky; top: 0;">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Employee Name</th>
+                <th scope="col">Total Days</th>
+                <th scope="col">Present Days</th>
+                <th scope="col">Absent Days</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of overall_data; let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td> <a [routerLink]="'/dashboard/employees/' + data.emp_id"> {{data.emp_name}}</a></td>
+                <td>{{data.total}}</td>
+                <td>{{data.present}}</td>
+                <td>{{data.absent}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

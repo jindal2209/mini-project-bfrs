@@ -1,0 +1,14 @@
+.main {
+  height: 100vh;
+  background-color: #f6f9fc;
+}
+
+.border-dark {
+  border-left: 1px solid #dde0e4 !important;
+}
+
+@media only screen and (max-width: 768px)  {
+  .hide-small {
+    display: none !important;
+  }
+}

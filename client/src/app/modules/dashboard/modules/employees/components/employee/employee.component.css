@@ -1,0 +1,27 @@
+.attendance-table {
+  background-color: white;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.attendance-table td,th {
+  padding: 5px 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.attendance-table th {
+  text-transform: uppercase;
+  color: #524d4d;
+}
+
+.attendance-table td {
+  width: 25%;
+  height: 100px;
+  color: #6c757d;
+}
+
+.attendance-table {
+  border-collapse: separate;
+  border-spacing: 20px;
+} 

@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <div class="mb-5 inner-box pt-2">
+      <div class="m-3">
+        <h4 class="h4 fw-bold">Dashboard</h4>
+      </div>
+
+      <div class="d-flex align-items-center justify-content-between flex-wrap">
+
+        <div class="shadow-sm p-3 bg-cblue border rounded-3 flex-fill m-3 text-white">
+          <h6>Total Employees</h6>
+          <h4 class="fw-bold text-end">{{employee_list.length}}</h4>
+        </div>
+
+        <div class="shadow-sm p-3 bg-cgreen border rounded-3 flex-fill m-3 text-white">
+          <h6>Regular Employees</h6>
+          <h4 class="fw-bold text-end">{{employees_stats.regular || 0}}</h4>
+        </div>
+
+        <div class="shadow-sm p-3 bg-cred border rounded-3 flex-fill m-3 text-white">
+          <h6>Temporary Employees</h6>
+          <h4 class="fw-bold text-end">{{employees_stats.temporary || 0}}</h4>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mb-5 inner-box pt-2">
+      <div class="m-3">
+        <h4 class="h4 fw-bold">Employees List</h4>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-borderless emp-table mb-0">
+          <thead style="background-color: #eff4fa;">
+            <tr>
+              <th>Employee Name</th>
+              <th></th>
+              <th class="text-center">Date Joined</th>
+              <th class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let emp of employee_list;">
+              <td class="d-flex align-self-stretch">
+                <i class="h1 text-muted me-3 bi bi-person-circle"></i>
+                <div>
+                  <span class="h5 fw-bold">{{emp.name | titlecase}}</span>
+                  <br>
+                  {{emp.email}}
+                </div>
+              </td>
+              <td>
+                <div class="attendance-indicator m-auto" [ngClass]="{'bg-cred': !emp.present, 'bg-cgreen': emp.present}"
+                  (click)="handleAttendance(!emp.present,emp._id)">
+                  {{emp.present ? 'Present': 'Absent'}}
+                </div>
+              </td>
+              <td class="text-center">{{emp.date_joined | date}}</td>
+              <td class="text-center">
+                <button class="btn" routerLink="{{emp._id}}"><i class="bi bi-pencil"></i></button>
+                <button class="btn"><i class="bi bi-trash"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>

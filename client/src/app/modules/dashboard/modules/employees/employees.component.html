@@ -1,0 +1,54 @@
+<div class="p-1 bg-light" style="min-height: 100vh;">
+  <div class="container-fluid">
+    <div class="margin-x">
+
+      <div class="row">
+        <div class="col-md-12 d-flex align-items-center">
+          <span class="h1 py-4 fw-bold flex-start">Employees</span>
+          <button class="btn btn-primary bg-cblue ms-auto" data-bs-toggle="modal" data-bs-target="#addEmployeeModal"><i
+              class="bi bi-person-plus-fill me-1"></i> Add</button>
+        </div>
+      </div>
+
+      <hr>
+
+      <router-outlet></router-outlet>
+
+      <div class="modal" id="addEmployeeModal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Add Employee</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form (ngSubmit)="handleEmployeeRegister()" [formGroup]="employeeRegisterForm">
+              <div class="modal-body">
+                <div class="mb-3">
+                  <label class="form-label">Full Name</label>
+                  <input type="text" class="form-control" placeholder="Full name" formControlName="name">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-control" placeholder="name@email.com" formControlName="email">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Employee Type</label>
+                  <select class="form-select" formControlName="employee_type">
+                    <option selected value="Regular">Regular</option>
+                    <option value="Temporary">Temporary</option>
+                  </select>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                  (click)="handleReset()">Close</button>
+                <button type="submit" class="btn btn-success" [disabled]="!employeeRegisterForm.valid">Add</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

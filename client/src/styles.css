@@ -1,0 +1,99 @@
+/* angular-cli file: src/styles.css */
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+
+:root {
+  --main-bg-cred: #ff1e4b;
+  --main-bg-cgreen: #03bd7f;
+  --main-bg-cblue: #0195ff;
+}
+
+
+/* You can add global styles to this file, and also import other style files */
+.c-pointer {
+  cursor: pointer;
+}
+
+.disabled-date{
+  opacity: .7;
+  cursor: not-allowed !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-cred {
+  background-color: var(--main-bg-cred);
+}
+
+.bg-cgreen { 
+  background-color: var(--main-bg-cgreen);
+}
+
+.bg-cblue {
+  background-color: var(--main-bg-cblue);
+}
+
+.margin-x {
+  margin-left: 1.4rem;
+  margin-right: 1.4rem;
+}
+
+@media screen and (max-width: 600px) {
+  .margin-x {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.inner-box {
+  background-color: white;
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.2) !important;
+}
+
+.rounded-3 {
+  border: transparent;
+  border-radius: 8px !important;
+}
+
+.emp-table tr {
+  vertical-align: middle;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.emp-table td {
+  padding: 1.1rem 1.9rem ;
+  vertical-align: middle;
+}
+
+.emp-table th {
+  vertical-align: middle;
+  padding: 1.3rem 1.9rem ;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.attendance-indicator {
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  padding: 5px;
+  text-align: center;
+  width: 60%;
+  cursor: pointer;
+  transition: 0.5s;
+  animation: 0.3s ease-out 0s 1 slideInFromLeft;
+}
+
+@media screen and (max-width: 600px) {
+  .attendance-indicator {
+    width: 120%;
+  }
+}

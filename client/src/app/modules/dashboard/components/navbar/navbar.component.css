@@ -1,0 +1,143 @@
+.sidenav {
+  height: 100%; 
+  width: 310px; 
+  position: fixed;
+  z-index: 1; 
+  top: 0; 
+  left: 0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  box-shadow: 5px 0 5px -10px #333;
+}
+
+.sidebar {
+  height: 100%;
+  width: 65px;
+  padding: 10px 0;
+  text-align: center;
+  color: white;
+  background-color: #0195ff;
+  border-top-left-radius: 22px;
+  border-bottom-left-radius: 22px;
+}
+
+.mainbar {
+  width: 100%;
+  background-color: white;
+}
+
+.mainbar-header {
+  color: #000 !important;
+  font-weight: bold;
+  padding: 10px 20px !important;
+  text-align: center;
+}
+
+/* The navigation menu links */
+.mainbar a {
+  margin: 17px 0;
+  padding: 3px 20px ;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #433;  
+}
+
+.active-link {
+  color: #0195ff !important;
+  border-right: 5px solid #0195ff;
+} 
+
+.checkbtn {
+  z-index: 2;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 100px;
+  display: none;
+  position: fixed;
+  top: 5px;
+  right: 5px;
+}
+.bar {
+  display: block;
+  width: 20px;
+  height: 3px;
+  margin: 5px 10px;
+  transition: all .5s ease-in-out;
+  background-color: #000;
+}
+.bar:first-child {
+  margin-top: 11px;
+}
+.bar:nth-child(3) {
+  margin-bottom: 10px;
+}
+
+#check:checked ~ .checkbtn {
+  box-shadow: none;
+  transition: .5s;
+}
+#check:checked ~ .sidenav {
+  width: 95%;
+}
+
+#check:checked ~ .checkbtn .bar:nth-child(2) {
+	opacity: 0;
+}
+#check:checked ~ .checkbtn .bar:nth-child(1) {
+	-webkit-transform: translateY(8px) rotate(45deg);
+	transform: translateY(8px) rotate(45deg);
+}
+#check:checked ~ .checkbtn .bar:nth-child(3) {
+	-webkit-transform: translateY(-8px) rotate(-45deg);
+	transform: translateY(-8px) rotate(-45deg);
+}
+
+.nav_header {
+  text-decoration: underline;
+  font-size: 30px;
+  display: none;
+}
+
+.sidebar-link {
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 65px;
+  height: 65px;
+  transition: 0.3s;
+}
+
+.sidebar-link:hover {
+  background-color: #0388e7;
+}
+
+
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .mainbar a {font-size: 18px;}
+}
+
+@media screen and (max-width: 600px) {
+  .nav_header {
+    display: block;
+  }
+  .sidenav {
+    width: 0;
+  }
+  .checkbtn {
+    display: block;
+  }
+}
