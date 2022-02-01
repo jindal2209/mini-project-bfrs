@@ -89,3 +89,19 @@
   opacity: 1;
   transform: translateX(calc(var(--width) - var(--height)));
 }
+
+@media screen and (max-width: 600px) {
+  .toggle {
+    --width: 75px;
+    --height: calc(var(--width) / 3);
+  }
+
+  .toggle .labels::before {
+    left: calc(var(--height) - var(--width) + 7px);
+  }
+
+  .toggle .labels {
+    top: 5px;
+    font-size: 10px;
+  }
+}

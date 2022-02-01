@@ -1,9 +1,12 @@
+<!-- <div class="row">
+  <div class="col-md-4"> -->
+
 <div class="row">
   <div class="col-md-12">
     <div>
       <div class="shadow-sm px-4 py-3 my-3 bg-white rounded">
         <div class="row">
-          <div class="col-10">
+          <div class="col-11">
             <h3>{{emp_data.name | titlecase}}</h3>
             <p class="text-muted">
               Email: {{emp_data.email}} <br>
@@ -13,7 +16,7 @@
               Status: {{ emp_data.is_active ? 'Active' : 'Inactive' }} <br>
             </p>
           </div>
-          <div class="col-2 d-flex justify-content-center align-items-center">
+          <div class="col-1 d-flex justify-content-center align-items-start">
             <app-checkbox-toggle [id]='id' [check]="is_present" (change)="handleAttendance($event.target.checked,id)">
             </app-checkbox-toggle>
           </div>
@@ -23,13 +26,17 @@
   </div>
 </div>
 
+<!-- </div> -->
+
+<!-- <div class="col-md-8 px-3"> -->
+
+
 <div class="row">
   <div class="col-md-12">
     <div class="">
-      <h4 class="fw-bold mb-3">Attendance Summary</h4>
-
+      <h4 class="fw-bold my-3">Attendance Summary</h4>
       <div class="light" id="calendar-main">
-        <div class="calendar">
+        <div class="calendar shadow-sm">
           <div class="calendar-header">
             <span class="month-picker">{{months[month]}}</span>
             <div class="year-picker">
@@ -72,7 +79,10 @@
           <div class="month-list"></div>
         </div>
       </div>
-
     </div>
   </div>
 </div>
+
+<!-- </div> -->
+
+<!-- </div> -->

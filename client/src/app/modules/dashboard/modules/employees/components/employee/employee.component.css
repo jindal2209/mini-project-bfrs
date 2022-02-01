@@ -21,7 +21,7 @@
 }
 
 #calendar-main {
-  width: 90%;
+  width: 100%;
   background-color: var(--bg-body);
 }
 
@@ -82,8 +82,7 @@
 .calendar-week-day div {
   display: grid;
   place-items: center;
-  /* color: var(--bg-second); */
-  color: #5a5a5a;
+  color: var(--bg-second);
 }
 
 .calendar-days div {
@@ -91,7 +90,6 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  /* cursor: pointer; */
   animation: to-top 1s forwards;
   transition: 0.5s;
   border-radius: 50%;

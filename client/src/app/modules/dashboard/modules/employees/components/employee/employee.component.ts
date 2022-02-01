@@ -19,7 +19,6 @@ export class EmployeeComponent implements OnInit {
   fulldate: Date;
   year: number;
   month: number;
-  // month: String;
   date: Number;
   days: number[] = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -80,7 +79,6 @@ export class EmployeeComponent implements OnInit {
     if (this.dayn == -1) {
       this.dayn = 6;
     }
-
     for (let i = 1; i <= this.dayn; i++) {
       this.arr.push({ 'date': '', 'background': '' });
     }
@@ -91,8 +89,11 @@ export class EmployeeComponent implements OnInit {
       }
     }
     for (let i = 1; i <= total_days; i++) {
-      let bg = this.calendar_attendance_data[this.year][this.month][i];
-      this.arr.push({ 'date': i, 'background': bg === undefined ? 'bg-blue' : bg });
+      let bg = this.calendar_attendance_data[this.year]
+      if (bg !== undefined) {
+        bg = bg[this.month];
+      }
+      this.arr.push({ 'date': i, 'background': bg === undefined ? 'bg-blue' : bg[i] === undefined ? 'bg-blue' : bg[i] });
     }
   }
 
