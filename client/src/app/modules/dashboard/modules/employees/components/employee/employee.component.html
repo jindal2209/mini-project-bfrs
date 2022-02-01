@@ -25,74 +25,54 @@
 
 <div class="row">
   <div class="col-md-12">
-    <div class="m-3">
+    <div class="">
       <h4 class="fw-bold mb-3">Attendance Summary</h4>
 
-      <table class="attendance-table">
-        <thead>
-          <th>mon</th>
-          <th>tue</th>
-          <th>wed</th>
-          <th>thu</th>
-          <th>fri</th>
-          <th>Sat</th>
-          <th>sun</th>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="light" id="calendar-main">
+        <div class="calendar">
+          <div class="calendar-header">
+            <span class="month-picker">{{months[month]}}</span>
+            <div class="year-picker">
+              <span class="year-change" id="prev-year" (click)="handleMonth(-1)">
+                <pre><</pre>
+              </span>
+              <span id="year">{{year}}</span>
+              <span class="year-change" id="next-year" (click)="handleMonth(1)">
+                <pre>></pre>
+              </span>
+            </div>
+          </div>
 
-      <div *ngFor="let attendance of attendance_data">
-        <div class="my-2 p-3" [class.table-danger]="!attendance.is_present"
-          [class.table-success]="attendance.is_present">
-          {{attendance.date | date}} | {{attendance.date | date:'EEEE'}}
+          <div class="calendar-body">
+            <div class="calendar-week-day" id="small-weeks">
+              <div>Mon</div>
+              <div>Tue</div>
+              <div>Wed</div>
+              <div>Thu</div>
+              <div>Fri</div>
+              <div>Sat</div>
+              <div>Sun</div>
+            </div>
+            <div class="calendar-week-day" id="large-weeks">
+              <div>Monday</div>
+              <div>Tuesday</div>
+              <div>Wednesday</div>
+              <div>Thursday</div>
+              <div>Friday</div>
+              <div>Saturday</div>
+              <div>Sunday</div>
+            </div>
+            <div class="calendar-days">
+              <div *ngFor="let date of arr" class="{{date.background}} fw-bold">
+                {{date['date']}}
+              </div>
+            </div>
+          </div>
+
+          <div class="month-list"></div>
         </div>
       </div>
+
     </div>
   </div>
 </div>

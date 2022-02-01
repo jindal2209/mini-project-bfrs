@@ -1,10 +1,35 @@
 /* angular-cli file: src/styles.css */
-@import "../node_modules/angular-calendar/css/angular-calendar.css";
+/* @import "../node_modules/angular-calendar/css/angular-calendar.css"; */
 
 :root {
   --main-bg-cred: #ff1e4b;
   --main-bg-cgreen: #03bd7f;
   --main-bg-cblue: #0195ff;
+
+  --bg-hover-red: #f5c6cb;
+  --bg-hover-blue: #b8daff;
+  --bg-hover-green: #c3e6cb;;
+
+
+  
+  --dark-body: #4d4c5a;
+  --dark-main: #141529;
+  --dark-second: #79788c;
+  --dark-hover: #323048;
+  --dark-text: #f8fbff;
+
+  --light-body: #f3f8fe;
+  --light-main: #fdfdfd;
+  --light-second: #c3c2c8;
+  --light-hover: #edf0f5;
+  --light-text: #151426;
+  
+  --blue: #0000ff;
+  --white: #fff;
+
+  --shadow: rgba(100,100,111,0.2) 0 7px 29px 0;
+
+  --font-family: cursive;
 }
 
 
@@ -97,3 +122,4 @@
     width: 120%;
   }
 }
+
