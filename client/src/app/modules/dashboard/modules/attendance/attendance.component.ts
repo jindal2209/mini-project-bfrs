@@ -62,5 +62,12 @@ export class AttendanceComponent implements OnInit {
       this.getData();
     })
   }
+  handleAttendanceFile() {
+    this._authService.showLoader()
+    this._authService.handleAttendanceFile().subscribe(() => {
+      this._authService.hideLoader()
+      this.getData();
+    })
+  }
 
 }

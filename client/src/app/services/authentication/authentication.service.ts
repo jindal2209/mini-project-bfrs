@@ -73,6 +73,12 @@ export class AuthenticationService {
         this.employeeUpdated.next();
       }))
   }
+  handleAttendanceFile() {
+    return this._http.get(`http://localhost:3000/upload-employee-attendance`)
+      .pipe(tap(() => {
+        this.employeeUpdated.next();
+      }))
+  }
 
   setToken(token: string) {
     localStorage.setItem('token', token);
