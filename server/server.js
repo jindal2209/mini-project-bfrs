@@ -315,10 +315,11 @@ app.get("/change-employee-attendance", (req, res) => {
     }
   }
 });
-/////////////////////////////////////////////////
+//By Ritesh Arora
 app.get("/upload-employee-attendance", async (req, res) => {
   var workbook = XLSX.readFile("attendance.xlsx");
   var sheet_name_list = workbook.SheetNames;
+  //parse data
   var xlData = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]]);
 
   var [year, month, date] = getTodayDate();
@@ -330,65 +331,72 @@ app.get("/upload-employee-attendance", async (req, res) => {
     present_emp_list: [],
     absent_emp_list: [],
   };
+  //set sheet data
   const total_emp = xlData;
   // console.log(total_emp);
   if (total_emp) {
     data["total_emp"] = total_emp.length;
-    const emp_list = await attendanceModel
-      .findOne({
-        year: year,
-        months: month,
-        date: date,
-      })
+    //empty prefilled data
+    await attendanceModel
+      .findOneAndUpdate(
+        {
+          year: year,
+          months: month,
+          date: date,
+        },
+        {
+          year: year,
+          months: month,
+          date: date,
+          emp_ids: [],
+        },
+      )
       .exec();
 
-    if (emp_list) {
-      data["present_emp"] = emp_list.emp_ids.length;
-      data["absent_emp"] = data["total_emp"] - data["present_emp"];
+    // if (emp_list) {
 
-      for (let emp of total_emp) {
-        // console.log(emp.action);
-        if (emp.action == "P") {
-          attendanceModel.findOneAndUpdate(
-            {
-              year: year,
-              months: month,
-              date: date,
-            },
-            {
-              $push: { emp_ids: emp._id }, // push for add
-            },
-            (err, data) => {
-              if (err) {
-                res.status(401).send({ msg: "unable to make changes" });
-              }
-            },
-          );
-          data["present_emp_list"].push(emp);
-        } else {
-          attendanceModel.findOneAndUpdate(
-            {
-              year: year,
-              months: month,
-              date: date,
-            },
-            {
-              $pull: { emp_ids: emp._id }, // pull for delete
-            },
-            (err, data) => {
-              if (err) {
-                res.status(401).send({ msg: "unable to make changes" });
-              }
-            },
-          );
-          data["absent_emp_list"].push(emp);
-        }
+    for (let emp of total_emp) {
+      // console.log(emp.action);
+      if (emp.action == "P") {
+        attendanceModel.findOneAndUpdate(
+          {
+            year: year,
+            months: month,
+            date: date,
+          },
+          {
+            $push: { emp_ids: emp._id }, // push for add
+          },
+          (err, data) => {
+            if (err) {
+              res.status(401).send({ msg: "unable to make changes" });
+            }
+          },
+        );
+        data["present_emp_list"].push(emp);
+        data["present_emp"] += 1;
+      } else {
+        attendanceModel.findOneAndUpdate(
+          {
+            year: year,
+            months: month,
+            date: date,
+          },
+          {
+            $pull: { emp_ids: emp._id }, // pull for delete
+          },
+          (err, data) => {
+            if (err) {
+              res.status(401).send({ msg: "unable to make changes" });
+            }
+          },
+        );
+        data["absent_emp_list"].push(emp);
+        data["absent_emp"] += 1;
       }
-
-      res.status(200).send(data);
-    } else {
-      res.status(401).send({ msg: "Error fetching emp_list" });
     }
+    console.log("-> ", data);
+    res.status(200).send(data);
   } else {
     res.status(401).send({ msg: "Error fetching total_emp" });
   }
