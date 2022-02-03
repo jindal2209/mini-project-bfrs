@@ -316,7 +316,8 @@ app.get("/change-employee-attendance", (req, res) => {
   }
 });
 //By Ritesh Arora
-app.get("/upload-employee-attendance", async (req, res) => {
+app.post("/upload-employee-attendance", async (req, res) => {
+  console.log("sds", req.body);
   var workbook = XLSX.readFile("attendance.xlsx");
   var sheet_name_list = workbook.SheetNames;
   //parse data
@@ -395,7 +396,7 @@ app.get("/upload-employee-attendance", async (req, res) => {
         data["absent_emp"] += 1;
       }
     }
-    console.log("-> ", data);
+    // console.log("-> ", data);
     res.status(200).send(data);
   } else {
     res.status(401).send({ msg: "Error fetching total_emp" });

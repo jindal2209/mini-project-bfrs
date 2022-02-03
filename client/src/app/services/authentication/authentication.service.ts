@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -73,8 +73,14 @@ export class AuthenticationService {
         this.employeeUpdated.next();
       }))
   }
-  handleAttendanceFile() {
-    return this._http.get(`http://localhost:3000/upload-employee-attendance`)
+  handleAttendanceFile(date:string) {
+    const headers = { 'content-type': 'application/json'} 
+    const body={
+      "date":date
+    };
+    return this._http.post(`http://localhost:3000/upload-employee-attendance`,body,{
+      'headers':headers
+    })
       .pipe(tap(() => {
         this.employeeUpdated.next();
       }))

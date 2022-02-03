@@ -43,7 +43,10 @@
           </div>
         </div>
       </div>
-     <button (click)="handleAttendanceFile()" class="file">Upload Today's Attendance By file</button>
+      <form (ngSubmit)="handleAttendanceFile(f)" #f="ngForm">
+        <button class="file" type="submit">Upload Attendance By file</button>
+        <input type="date" id="txtfuturedate" (click)="validDate()" required ngModel name="date">
+      </form> 
       <div class="mb-5 inner-box">
         <div class="table-responsive">
           <table class="table table-hover table-borderless mb-0 emp-table">
