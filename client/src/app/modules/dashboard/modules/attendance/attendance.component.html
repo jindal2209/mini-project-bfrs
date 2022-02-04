@@ -43,9 +43,14 @@
           </div>
         </div>
       </div>
-      <form (ngSubmit)="handleAttendanceFile(f)" #f="ngForm">
-        <button class="file" type="submit">Upload Attendance By file</button>
-        <input type="date" id="txtfuturedate" (click)="validDate()" required ngModel name="date">
+      <form (ngSubmit)="handleAttendanceFile(f)" #f="ngForm" class="att_form">
+        <div class="child1">
+          <button class="file" type="submit" class="form_child" [disabled]="!f.valid">Upload Attendance By file</button>
+          <input type="date" id="txtfuturedate" (click)="validDate()" class="form_child" required ngModel name="date">
+        </div>
+        <div *ngIf="!f.valid" class="form_child child2">
+          Please Enter a Valid Date
+        </div>
       </form> 
       <div class="mb-5 inner-box">
         <div class="table-responsive">
