@@ -82,6 +82,7 @@ function getTodayDate() {
   let year = today.getFullYear();
   let month = today.getMonth();
   let date = today.getDate();
+  // console.log("->", year, month, date, today);
   return [year, month, date];
 }
 
@@ -316,14 +317,29 @@ app.get("/change-employee-attendance", (req, res) => {
   }
 });
 //By Ritesh Arora
-app.get("/upload-employee-attendance", async (req, res) => {
+app.post("/upload-employee-attendance", async (req, res) => {
+  console.log("sds", req.body);
+  const bodyDate = new Date(req.body.date);
   var workbook = XLSX.readFile("attendance.xlsx");
   var sheet_name_list = workbook.SheetNames;
   //parse data
   var xlData = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]]);
 
-  var [year, month, date] = getTodayDate();
-
+  let year = bodyDate.getFullYear();
+  let month = bodyDate.getMonth();
+  let date = bodyDate.getDate();
+  //remove if previously present
+  await attendanceModel.findOneAndDelete({
+    year: year,
+    month: month,
+    date: date,
+  });
+  await attendanceModel.create({
+    year: year,
+    months: month,
+    date: date,
+    emp_ids: [],
+  });
   let data = {
     total_emp: 0,
     absent_emp: 0,
@@ -333,27 +349,9 @@ app.get("/upload-employee-attendance", async (req, res) => {
   };
   //set sheet data
   const total_emp = xlData;
-  // console.log(total_emp);
   if (total_emp) {
     data["total_emp"] = total_emp.length;
-    //empty prefilled data
-    await attendanceModel
-      .findOneAndUpdate(
-        {
-          year: year,
-          months: month,
-          date: date,
-        },
-        {
-          year: year,
-          months: month,
-          date: date,
-          emp_ids: [],
-        },
-      )
-      .exec();
-
-    // if (emp_list) {
+    //empty prefilled date
 
     for (let emp of total_emp) {
       // console.log(emp.action);
@@ -395,7 +393,7 @@ app.get("/upload-employee-attendance", async (req, res) => {
         data["absent_emp"] += 1;
       }
     }
-    console.log("-> ", data);
+    // console.log("-> ", data);
     res.status(200).send(data);
   } else {
     res.status(401).send({ msg: "Error fetching total_emp" });

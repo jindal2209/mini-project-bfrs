@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { NgForm } from "@angular/forms";
 import { AuthenticationService } from "src/app/services/authentication/authentication.service";
 
 @Component({
@@ -34,12 +35,16 @@ export class AttendanceComponent implements OnInit {
         this._authService.hideLoader();
       })
   }
-
+  
   addDays(date: any, days: any) {
     date = new Date(date.valueOf())
     date.setDate(date.getDate() + days)
     return date
   }
+  validDate(){
+    var today = new Date().toISOString().split('T')[0];
+    document.getElementById("txtfuturedate").setAttribute("max",today);
+  }  
 
   handlePrevious() {
     this.curr_date = this.addDays(this.curr_date, -1);
@@ -62,9 +67,10 @@ export class AttendanceComponent implements OnInit {
       this.getData();
     })
   }
-  handleAttendanceFile() {
+  handleAttendanceFile(form:NgForm) {
+    const date=form.form.controls.date.value;
     this._authService.showLoader()
-    this._authService.handleAttendanceFile().subscribe(() => {
+    this._authService.handleAttendanceFile(date).subscribe(() => {
       this._authService.hideLoader()
       this.getData();
     })

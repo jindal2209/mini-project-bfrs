@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 import { AttendanceRoutingModule } from "./attendance-routing.module";
 import { AttendanceComponent } from "./attendance.component";
 
@@ -9,7 +10,8 @@ import { AttendanceComponent } from "./attendance.component";
   ],
   imports: [
     CommonModule,
-    AttendanceRoutingModule
+    AttendanceRoutingModule,
+    FormsModule
   ]
 })
 export class AttendanceModule {
